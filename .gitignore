@@ -1,0 +1,11 @@
+runtime/
+__pycache__/
+*.pyc
+*.pyo
+*.log
+Thumbs.db
+dashboard.port
+registro_attestazioni.csv
+registro_attestazioni.lock
+*.pdf
+*.tmp

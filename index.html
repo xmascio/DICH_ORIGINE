@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dichiarazioni di origine</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="sidebar-logo"><img src="assets/logo-nordlaser.png" alt="NordLaser"></div>
+        <div class="brand">
+          <span class="brand-icon" aria-hidden="true">
+            <svg viewBox="0 0 24 24"><path d="M7 3h10l4 6-9 12L3 9l4-6Z"></path><path d="M3 9h18"></path><path d="M12 21 8 9l4-6 4 6-4 12Z"></path></svg>
+          </span>
+          <div>
+            <strong>Dichiarazioni origine</strong>
+            <span>Generatore PDF</span>
+          </div>
+        </div>
+        <nav>
+          <a href="#materiali">
+            <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M3 12h18"></path><path d="M3 18h18"></path></svg>
+            Elenco codici
+          </a>
+          <a href="#output">
+            <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="M7 10l5 5 5-5"></path><path d="M12 15V3"></path></svg>
+            Destinazione PDF
+          </a>
+        </nav>
+        <div class="sidebar-actions">
+          <button id="generateSideIt" class="sidebar-action" type="button">
+            <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
+            PDF IT
+          </button>
+          <button id="generateSideEn" class="sidebar-action" type="button">
+            <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
+            PDF EN
+          </button>
+        </div>
+      </aside>
+
+      <main class="content">
+        <div class="sticky-document" id="documento">
+          <header class="page-header">
+            <div>
+              <h1>Dichiarazione di origine</h1>
+              <p>Compila i dati, verifica le righe materiale e genera il PDF stampabile.</p>
+            </div>
+          </header>
+
+          <section class="document-panel">
+            <div class="form-grid">
+              <label>
+                <span>Cliente dichiarazione</span>
+                <div class="client-combobox">
+                  <input id="clientSearch" placeholder="Cerca per nome o codice cliente..." autocomplete="off" required>
+                  <button id="clearClient" class="client-clear" type="button" title="Azzera filtro cliente" aria-label="Azzera filtro cliente">
+                    <svg viewBox="0 0 24 24"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+                  </button>
+                  <div id="clientOptions" class="client-dropdown" role="listbox" hidden></div>
+                </div>
+              </label>
+              <label>
+                <span>Data inizio validita</span>
+                <input id="validFrom" type="date" required>
+              </label>
+              <label>
+                <span>Data fine validita</span>
+                <input id="validTo" type="date" required>
+              </label>
+              <div class="header-actions">
+                <button id="resetHeader" type="button" title="Resetta filtri testata">
+                  <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 3-6.7"></path><path d="M3 3v6h6"></path></svg>
+                  Reset filtri
+                </button>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <section class="panel" id="materiali">
+          <div class="section-bar">
+            <h2>Elenco codici</h2>
+            <div class="toolbar">
+              <button id="addRow" class="secondary" type="button" title="Aggiungi riga">
+                <svg viewBox="0 0 24 24"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg>
+                Riga
+              </button>
+              <button id="removeEmpty" class="secondary" type="button" title="Rimuovi righe vuote">
+                <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path><path d="M10 11v6"></path><path d="M14 11v6"></path></svg>
+                Vuote
+              </button>
+              <button id="clearTable" class="secondary" type="button" title="Cancella tutta la tabella">
+                <svg viewBox="0 0 24 24"><path d="M3 6h18"></path><path d="M8 6V4h8v2"></path><path d="M19 6l-1 14H6L5 6"></path><path d="M9 10l6 6"></path><path d="m15 10-6 6"></path></svg>
+                Cancella tabella
+              </button>
+              <button id="applyCustomsCode" class="secondary" type="button" title="Applica codice doganale a tutte le righe">
+                <svg viewBox="0 0 24 24"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h10"></path><path d="M18 15v6"></path><path d="M15 18h6"></path></svg>
+                Codice doganale
+              </button>
+              <button id="importRows" type="button" title="Compila tabella da testo">
+                <svg viewBox="0 0 24 24"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>
+                Compila tabella
+              </button>
+            </div>
+          </div>
+          <div class="import-grid">
+            <label>
+              <span>Elenco testo codici articolo e descrizioni</span>
+              <textarea id="importText" rows="4" placeholder="Incolla una riga per articolo. Esempi:&#10;H9313468 COMPRESSOR CANOPY FIXING HANGER PAINTED&#10;H9313469;DESCRIZIONE ARTICOLO&#10;H9313470&#9;DESCRIZIONE ARTICOLO"></textarea>
+            </label>
+          </div>
+          <div class="table-wrap">
+            <table class="spreadsheetTable">
+              <colgroup>
+                <col style="width: 170px">
+                <col>
+                <col style="width: 170px">
+                <col style="width: 180px">
+                <col style="width: 64px">
+              </colgroup>
+              <thead>
+                <tr>
+                  <th>Codice articolo</th>
+                  <th>Descrizione</th>
+                  <th>Codice doganale</th>
+                  <th>Gruppo paese</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody id="materialsBody"></tbody>
+            </table>
+          </div>
+          <div class="groups-note">
+            <strong>* Gruppi paese</strong>
+            <span>GP001: AL;BA;CH;EG;FO;GE;IS;LI;MD;ME;MK;NO;PS;RS;UA</span>
+            <span>GP002: BW;CI;CL;DZ;GH;IL;JO;KM;LB;LS;MA;MG;MU;MX;MZ;NA;SC;SZ;TN;TR;XC;XL;ZA;ZW</span>
+            <span>GP003: CA;GB;JP;KR;VN</span>
+            <span>GP004: CO;EC;PE;SG</span>
+            <span>GP005: AG;BB;BS;BZ;CM;CR;DM;DO;FJ;GD;GT;GY;HN;JM;KN;LC;NC;NI;PA;PF;PG;PM;SB;SR;SV;TT;VC;WS</span>
+            <span>MERCOSUR: AR;BR;PY;UY</span>
+          </div>
+        </section>
+
+        <section class="panel" id="output">
+          <h2>Destinazione PDF</h2>
+          <div class="form-grid output-grid">
+            <label>
+              <span>Cartella destinazione</span>
+              <div class="folder-field">
+                <input id="outputDir" placeholder="Esempio: \\nas01\QUALITA\Dichiarazioni">
+                <button id="browseOutputDir" class="secondary icon" type="button" title="Scegli cartella" aria-label="Scegli cartella">
+                  <svg viewBox="0 0 24 24"><path d="M3 7h7l2 2h9v10H3z"></path><path d="M3 7V5h7l2 2"></path></svg>
+                </button>
+              </div>
+            </label>
+            <button id="generateOutputIt" type="button">
+              <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
+              Genera PDF IT
+            </button>
+            <button id="generateOutputEn" type="button">
+              <svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"></path><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><path d="M6 14h12v8H6z"></path></svg>
+              Genera PDF EN
+            </button>
+            <button id="openPrintLog" type="button">
+              <svg viewBox="0 0 24 24"><path d="M4 5h16v14H4z"></path><path d="M8 9h8"></path><path d="M8 13h8"></path><path d="M8 17h5"></path></svg>
+              Log stampe
+            </button>
+          </div>
+          <span id="status" role="status" hidden></span>
+        </section>
+      </main>
+    </div>
+
+    <div id="printLogModal" class="modal-backdrop" hidden>
+      <section class="log-dialog" role="dialog" aria-modal="true" aria-labelledby="printLogTitle">
+        <div class="log-header">
+          <div>
+            <h2 id="printLogTitle">Registro attestazioni stampate</h2>
+            <p>Registro condiviso di tutte le dichiarazioni generate.</p>
+          </div>
+          <button id="closePrintLog" class="secondary icon" type="button" title="Chiudi" aria-label="Chiudi">
+            <svg viewBox="0 0 24 24"><path d="M18 6 6 18"></path><path d="m6 6 12 12"></path></svg>
+          </button>
+        </div>
+        <div class="log-toolbar">
+          <button id="exportLogExcel" class="secondary" type="button">
+            <svg viewBox="0 0 24 24"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>
+            Esporta Excel
+          </button>
+          <button id="exportLogTxt" class="secondary" type="button">
+            <svg viewBox="0 0 24 24"><path d="M12 3v12"></path><path d="M7 10l5 5 5-5"></path><path d="M5 21h14"></path></svg>
+            Esporta TXT
+          </button>
+        </div>
+        <div class="log-table-wrap">
+          <table class="log-table">
+            <thead><tr><th>Data e ora</th><th>Utente</th><th>Lingua</th><th>Codice</th><th>Cliente</th><th>Validita</th><th>Articoli</th><th>File PDF</th></tr></thead>
+            <tbody id="printLogBody"></tbody>
+          </table>
+        </div>
+        <span id="logStatus" role="status"></span>
+      </section>
+    </div>
+    <script src="app.js"></script>
+  </body>
+</html>
