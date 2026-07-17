@@ -515,6 +515,7 @@ button.icon {
   box-shadow: 0 22px 50px rgba(17, 24, 34, 0.28);
   display: grid;
   gap: 12px;
+  grid-template-rows: auto auto minmax(0, 1fr) auto;
   max-height: calc(100vh - 48px);
   max-width: 1500px;
   padding: 18px;
@@ -536,7 +537,9 @@ button.icon {
 
 .log-table-wrap {
   border: 1px solid var(--border);
-  overflow: auto;
+  min-height: 0;
+  overflow-x: auto;
+  overflow-y: auto;
 }
 
 .log-table {
