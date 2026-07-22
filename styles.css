@@ -538,13 +538,13 @@ button.icon {
 .log-table-wrap {
   border: 1px solid var(--border);
   min-height: 0;
-  overflow-x: auto;
+  overflow-x: hidden;
   overflow-y: auto;
 }
 
 .log-table {
   border-collapse: collapse;
-  min-width: 1180px;
+  table-layout: fixed;
   width: 100%;
 }
 
@@ -555,6 +555,7 @@ button.icon {
   padding: 7px 8px;
   text-align: left;
   vertical-align: top;
+  overflow-wrap: anywhere;
 }
 
 .log-table th {
@@ -564,9 +565,45 @@ button.icon {
   top: 0;
 }
 
-.log-table td:last-child {
-  max-width: 420px;
-  overflow-wrap: anywhere;
+.log-table th:nth-child(1),
+.log-table td:nth-child(1) {
+  width: 112px;
+}
+
+.log-table th:nth-child(2),
+.log-table td:nth-child(2) {
+  width: 142px;
+  white-space: nowrap;
+}
+
+.log-table th:nth-child(3),
+.log-table td:nth-child(3) {
+  width: 54px;
+}
+
+.log-table th:nth-child(4),
+.log-table td:nth-child(4) {
+  width: 74px;
+}
+
+.log-table th:nth-child(5),
+.log-table td:nth-child(5) {
+  width: 18%;
+}
+
+.log-table th:nth-child(6),
+.log-table td:nth-child(6) {
+  width: 116px;
+}
+
+.log-table th:nth-child(7),
+.log-table td:nth-child(7) {
+  width: 58px;
+}
+
+.log-table th:nth-child(8),
+.log-table td:nth-child(8) {
+  width: auto;
 }
 
 #logStatus {
